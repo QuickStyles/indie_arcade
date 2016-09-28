@@ -61,8 +61,6 @@ class Game < ApplicationRecord
   MAXIMUM_RAM = 4000
   MAXIMUM_HD_SPACE = 6000
 
-  # after_initialize :set_defaults
-
   validates :title, presence: true,
                     uniqueness: {case_sensitive: false}
   validates :user_id, presence: true
@@ -74,19 +72,7 @@ class Game < ApplicationRecord
 
   scope :user_data_subset, -> (admin,dev,dev_id){
   admin ? all : dev ? where(user_id: dev_id) :
-  where(aasm_state: ["Released to arcade","Not released"])}
-
-  # def set_defaults
-  #   self.aasm_state ||= "Game under review"
-  # end
-
-  def self.search(search)
-    Game.where("title ILIKE ?", "%#{search}%")
-  end
-
-  def self.approved
-    Game.where("status_id = ? OR status_id = ?", "1", "2" )
-  end
+  where(aasm_state: ["released","unreleased"])}
 
   # Usage example: @game.average_score_for :fun
   def average_score_for( attribute )
