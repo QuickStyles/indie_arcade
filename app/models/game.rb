@@ -61,8 +61,6 @@ class Game < ApplicationRecord
   MAXIMUM_RAM = 4000
   MAXIMUM_HD_SPACE = 6000
 
-  # after_initialize :set_defaults
-
   validates :title, presence: true,
                     uniqueness: { case_sensitive: false }
   validates :user_id, presence: true
@@ -78,7 +76,7 @@ class Game < ApplicationRecord
     elsif dev == true
       where user_id: dev_id
     else
-      where(aasm_state: ['Released to arcade', 'Not released'])
+      where(aasm_state: ['Released', 'Unreleased'])
     end
   end)
 
