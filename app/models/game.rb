@@ -4,15 +4,15 @@ class Game < ApplicationRecord
   aasm do
     state :under_review, initial: true
     state :rejected
-    state :incompatible
     state :unreleased
     state :released
+    state :incompatible
 
     event :approve do
-      transitions from: :under_review, to: :unreleased
+      transitions from: [:under_review, :rejected, :incompatible], to: :unreleased
     end
     event :reject do
-      transitions from: :under_review, to: :rejected
+      transitions from: [:under_review, :unreleased,:released, :incompatible], to: :rejected
     end
   end
 
@@ -61,7 +61,7 @@ class Game < ApplicationRecord
   MAXIMUM_RAM = 4000
   MAXIMUM_HD_SPACE = 6000
 
-  after_initialize :set_defaults
+  # after_initialize :set_defaults
 
   validates :title, presence: true,
                     uniqueness: { case_sensitive: false }
@@ -83,10 +83,6 @@ class Game < ApplicationRecord
   end)
 
   delegate :company, to: :user, prefix: true
-
-  def set_defaults
-    self.aasm_state ||= 'Game under review'
-  end
 
   def self.search(title)
     Game.where('title ILIKE ?', "%#{title}%")

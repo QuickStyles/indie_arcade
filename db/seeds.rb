@@ -49,7 +49,7 @@ end
                         gpu: rand(50)+1,
                         ram: 4+rand(17),
                         size: 1+ rand(4),
-                        aasm_state: ["Released to arcade", "Not released", "Game under review", "Game not uploaded, it is not compatible with the system", "Rejected"].sample })
+                        aasm_state: ["under_review", "rejected", "unreleased", "released", "incompatible"].sample })
 end
 
 50.times do
@@ -60,7 +60,7 @@ end
                         gpu: rand(50)+1,
                         ram: 4+rand(17),
                         size: 1+ rand(4),
-                        aasm_state: ["Released to arcade", "Not released", "Game under review", "Game not uploaded, it is not compatible with the system", "Rejected"].sample })
+                        aasm_state: ["under_review", "rejected", "unreleased", "released", "incompatible"].sample })
 end
 
 50.times do
@@ -71,7 +71,7 @@ end
                         gpu: rand(50)+1,
                         ram: 4+rand(17),
                         size: 1+ rand(4),
-                        aasm_state: ["Released to arcade", "Not released", "Game under review", "Game not uploaded, it is not compatible with the system", "Rejected"].sample })
+                        aasm_state: ["under_review", "rejected", "unreleased", "released", "incompatible"].sample })
 end
 
 50.times do
@@ -82,7 +82,7 @@ end
                         gpu: rand(50)+1,
                         ram: 4+rand(17),
                         size: 1+ rand(4),
-                        aasm_state: ["Released to arcade", "Not released", "Game under review", "Game not uploaded, it is not compatible with the system", "Rejected"].sample })
+                        aasm_state: ["under_review", "rejected", "unreleased", "released", "incompatible"].sample })
 end
 
 TAGGINGS_TO_CREATE = 400
