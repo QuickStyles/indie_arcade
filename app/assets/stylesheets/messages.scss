@@ -28,13 +28,15 @@
   color: red;
 }
 
-.btn {
-  margin: 10px;
-}
-
-@media screen and (max-width: 780px) {
-   .contact-details {
+@media screen and (max-width: 768px) {
+  .contact-email{
+    text-align: center;
+  }
+  .contact-details {
     padding-top: 20px;
     text-align: center;
+  }
+  #contact-header{
+    margin-bottom: 5px;
   }
 }
