@@ -48,10 +48,11 @@
     <br>
 
       <div class="col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8">
-          <%= simple_form_for @message, url: message_home_path do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :email, placeholder:"Email", label: false, :error => false %>
-            <%= f.input :content, as: :text, input_html: {rows: 10, cols: 10}, placeholder:"Message", label: false, :error => false %>
+        <%= simple_form_for @message, url: message_home_path do |f| %>
+          <%= f.full_error :email %>
+          <%= f.full_error :content %>
+          <%= f.input :email, placeholder:"Email", label: false, :error => false %>
+          <%= f.input :content, as: :text, input_html: {rows: 10, cols: 10}, placeholder:"Message", label: false, :error => false %>
       </div>
       <div class="col-sm-offset-3 col-sm-6">
         <%= f.button :submit, class:'btn btn-primary btn-block'%>
