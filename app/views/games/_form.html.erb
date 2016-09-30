@@ -4,27 +4,27 @@
     game will be tested. If it cannot be run, it will be rejected.
   </p>
   <%= simple_form_for(@game) do |f| %>
-  <%= f.error_notification %>
-  <%= @game.errors.full_messages.join(", ") %>
+    <%= f.error_notification %>
+    <%= @game.errors.full_messages.join(", ") %>
 
-  <div class="form-inputs input-for-game">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :picture %>
-    <%= f.input :attachment %>
+    <div class="form-inputs input-for-game">
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :picture %>
+      <%= f.input :attachment %>
 
-    <div class="label-for-tags">Tags</div>
-    <%= f.collection_select(:tag_ids, Tag.all, :id, :name,
-    {},
-    { multiple: true, class: 'chosen-select' }) %>
-    <%= f.input :link %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+      <div class="label-for-tags">Tags</div>
+      <%= f.collection_select(:tag_ids, Tag.all, :id, :name,
+      {},
+      { multiple: true, class: 'chosen-select' }) %>
+      <%= f.input :link %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
   <% end %>
 </div>
 
 <script>
-$('.chosen-select').chosen({});
+  $('.chosen-select').chosen({});
 </script>

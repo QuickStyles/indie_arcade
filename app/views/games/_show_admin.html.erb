@@ -1,31 +1,31 @@
 <h2 style="font-weight:bold; margin-bottom: 20px; color: #EF7030;"><%= @game.title %></h2>
- <p class="char1">Made by: <%= @game.user.company %></p>
- <div>
-   <p>Date: <%= @game.created_at %></p>
-   <p>Type:
-   <% @game.taggings.map do |tagging| %>
-     <%= Tag.find(tagging.tag_id).name %> &nbsp;|&nbsp;
-   <% end %>
+  <p class="char1">Made by: <%= @game.user.company %></p>
+  <div>
+    <p>Date: <%= @game.created_at %></p>
+    <p>Type:
+    <% @game.taggings.map do |tagging| %>
+      <%= Tag.find(tagging.tag_id).name %> &nbsp;|&nbsp;
+    <% end %>
   </p>
     <p>Last in Arcade: <%= @game.reviews.last ? @game.reviews.last.created_at : "Never" %></p>
     <p>Played: <%= @game.reviews.count %> times</p>
     <p>Overall Rating: <%= @game.reviews.count %></p>
     <p>Send email to developer about the game:</p>
 
-    <!-- Graph -->
-    <%= render 'graph' %>
+  <!-- Graph -->
+  <%= render 'graph' %>
 
  <div class="btn">
-   <%= button_to "Download Game", game_path(@game), method: :get %>
+  <%= button_to "Download Game", game_path(@game), method: :get %>
  </div>
  <div class="radiolist">
-   <%= simple_form_for(@game) do |f| %>
-     <%= f.error_notification %>
-     <div>
-       <%= f.input :status_id, as: :radio_buttons, collection: Status.all.collect{ |s| [ s.name, s.id] } %>
-     </div>
-     <div id = "submit-show">
-       <%= f.button :submit %>
-     </div>
-   <% end %>
+  <%= simple_form_for(@game) do |f| %>
+    <%= f.error_notification %>
+    <div>
+      <%= f.input :status_id, as: :radio_buttons, collection: Status.all.collect{ |s| [ s.name, s.id] } %>
+    </div>
+    <div id = "submit-show">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
  </div>
