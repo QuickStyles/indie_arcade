@@ -13,8 +13,8 @@
      <p>
        Send email to developer about the game:
      </p>
- <div class="btn">
-   <%= button_to "Download Game", game_path(@game), method: :get %>
+ <div class="">
+   <%= button_to "Download Game", game_path(@game), method: :get, class: 'btn btn-primary' %>
  </div>
  <div class="radiolist">
    <%= simple_form_for(@game) do |f| %>
