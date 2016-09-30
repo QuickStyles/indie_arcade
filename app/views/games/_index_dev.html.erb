@@ -4,19 +4,22 @@
 <div class="wrapper">
     <div class="one"><%= display_picture g %></div>
     <div class="two">
-        <h3 style="font-weight: bold; color: #EF7030;"><%= link_to g.title, game_path(g), class: "game-title" %></h3>
+        <h3><%= link_to g.title, game_path(g), class: "game-title" %></h3>
         <% g.tags.each do |t| %>
-        <span class="tag-boxes text-center">
-            <%= t.name %>
-        </span>
+
+          <span class="tag-boxes text-center">
+              <%= t.name %>
+          </span>
+
         <% end %>
-            <p class="game-aasm_state" style="color: #45A056; font-weight: bold; margin-top: 15px;"><%= g.aasm_state %></p>
-        <p class="pull-left" style="margin-right:20px; margin-bottom:20px;"><%=  link_to "Feedback", game_path(g), :class=>"btn btn-primary" %>
-            <%= link_to "Update", edit_game_path(g), :class=>"btn btn-primary" %>
-            <%= link_to "Controller Keys", new_game_key_path(g), :class=>"btn btn-primary" %>
+        <p class="clearfix"></p s>
+            <p class="game-aasm_state"><%= g.aasm_state %></p>
+        <p class="pull-left" style="margin-right:20px; margin-bottom:20px;"><%=  link_to "Feedback", game_path(g), :class=>"btn btn-default" %>
+            <%= link_to "Update", edit_game_path(g), :class=>"btn btn-default" %>
+            <%= link_to "Controller Keys", new_game_key_path(g), :class=>"btn btn-default" %>
             <%= link_to "Remove", game_path(g),
                                  method: :delete,
-                                 data: {confirm: 'Are you sure?'}, :class=>"btn btn-primary" %></p>
+                                 data: {confirm: 'Are you sure?'}, :class=>"btn btn-default" %></p>
         <br>
         <br>
     </div>
