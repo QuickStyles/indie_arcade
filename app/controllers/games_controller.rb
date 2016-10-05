@@ -6,8 +6,14 @@ class GamesController < ApplicationController
 
   def index
     @tags = Tag.all
-    @games = search(game_subset).order(desired_order)
-    @games = @games.page(params[:page]).per(GAMES_PER_PAGE)
+    service = Games::Search.new(params: params,
+                                user_signed_in: user_signed_in?,
+                                per_page: GAMES_PER_PAGE,
+                                user_is_admin: user_is_admin?,
+                                user_is_dev: user_is_dev?,
+                                current_user: current_user)
+    service.call
+    @games = service.games
   end
 
   def show
@@ -56,22 +62,6 @@ class GamesController < ApplicationController
 
   private
 
-  def game_subset
-    Game.user_data_subset(user_is_admin?, user_is_dev?, current_user&.id)
-  end
-
-  def search(subset)
-    if params[:search_user]
-      subset.search_by('user', params[:search_user])
-    elsif params[:tag]
-      subset.search_by('tags', params.require(:tag)[:tag_ids])
-    elsif params[:search_main]
-      subset.search_by('main', params[:search_main])
-    else
-      subset.order(desired_order)
-    end
-  end
-
   def find_game
     @game = Game.find params[:id]
   end
@@ -86,15 +76,5 @@ class GamesController < ApplicationController
   # Used to fulfill client requests for 5 new games
   def fill_machine_order(games)
     games.limit(5).order('RANDOM()')
-  end
-
-  def desired_order
-    if user_signed_in?
-      "aasm_state='Rejected',aasm_state='Game not uploaded,
-      it is not compatible with the system',aasm_state='Released to arcade',
-      aasm_state='Not released', aasm_state= 'Game under review'"
-    else
-      "aasm_state='Not released',aasm_state='Released to arcade'"
-    end
   end
 end

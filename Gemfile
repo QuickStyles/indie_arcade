@@ -1,5 +1,6 @@
-
 source 'https://rubygems.org'
+
+ruby '2.3.1'
 
 gem 'rubocop', require: false
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -33,6 +34,7 @@ gem 'compass-rails'
 gem 'delayed_job_active_record'
 gem 'sinatra', '2.0.0.beta2'
 gem "delayed_job_web"
+gem 'virtus'
 
 # Bootstrap
 
