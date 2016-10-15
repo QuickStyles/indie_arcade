@@ -11,7 +11,6 @@ class Game < ApplicationRecord
     event :approve do
       transitions from: [:under_review, :rejected, :incompatible], to: :unreleased
     end
-
     event :reject do
       transitions from: [:under_review, :unreleased,:released, :incompatible], to: :rejected
     end
