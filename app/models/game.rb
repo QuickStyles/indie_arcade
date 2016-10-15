@@ -77,7 +77,7 @@ class Game < ApplicationRecord
     elsif dev == true
       where user_id: dev_id
     else
-      where(aasm_state: ['Released', 'Unreleased'])
+      where(aasm_state: ['released', 'unreleased'])
     end
   end)
 
