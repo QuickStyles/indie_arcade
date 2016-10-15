@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   include AASM
 
-  aasm :whine_transitions => false do
+  aasm whine_transitions: false do
     state :under_review, initial: true
     state :rejected
     state :unreleased
@@ -9,10 +9,12 @@ class Game < ApplicationRecord
     state :incompatible
 
     event :approve do
-      transitions from: [:under_review, :rejected, :incompatible], to: :unreleased
+      transitions from: [:under_review, :rejected, :incompatible],
+                  to: :unreleased
     end
     event :reject do
-      transitions from: [:under_review, :unreleased,:released, :incompatible], to: :rejected
+      transitions from: [:under_review, :unreleased, :released, :incompatible],
+                  to: :rejected
     end
   end
 
@@ -20,15 +22,11 @@ class Game < ApplicationRecord
   pg_search_scope(
     :search_by, lambda do |type, query|
       if type == 'main'
-        {
-        against: { title: 'A' },
-        using: {
-          tsearch:{dictionary: "english",
-                  prefix: true,
-                  any_word: true}
-                },
-        query: query
-        }
+        { against: { title: 'A' },
+          using: { tsearch: { dictionary: 'english',
+                              prefix: true,
+                              any_word: true } },
+          query: query }
       elsif type == 'user'
         {
           associated_against: { user: :company },
@@ -76,7 +74,7 @@ class Game < ApplicationRecord
     elsif dev == true
       where user_id: dev_id
     else
-      where(aasm_state: ['released', 'unreleased'])
+      where(aasm_state: %w(released unreleased))
     end
   end)
 
