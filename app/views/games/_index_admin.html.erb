@@ -1,6 +1,6 @@
 <h1 class="games-index-h1">Games Requiring Review</h1>
 <% if @games.present? %>
-    <% @games.each do |g|  %>
+  <% @games.each do |g|  %>
     <div class="wrapper">
         <div class="one"><%= display_picture g %></div>
         <div class="two">
@@ -17,11 +17,12 @@
             <p class="game-aasm_state"><%= g.aasm_state %></p>
             </div>
         </div>
+      </div>
     </div>
-    <!-- </div> -->
-    <% end %>
+  <% end %>
 </div>
 <% else %>
-<p>There are no matches for your search</p>
+  <p>There are no matches for your search</p>
 <% end %>
+
 <%= paginate @games %>

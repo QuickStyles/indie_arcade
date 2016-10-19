@@ -5,8 +5,8 @@
    <%= link_to 'download game', @game.attachment_url, class: "orange"%>
 
   <div style="text-align: center"><h3>Overview</h3></div>
-  <h3><%= pluralize @game.reviews.count, "Plays" %></h3>
-  <% if @game.reviews.count > 0 %>
+  <h3><%= pluralize @game.reviews_count, "Plays" %></h3>
+  <% if @game.reviews_count > 0 %>
     <h4>Fun</h4>
     <div class="progress">
       <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow=""
